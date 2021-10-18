@@ -1,0 +1,21 @@
+@pytest.mark.parametrize("name", [("Сергей"), ("SERGEY")])
+@pytest.mark.parametrize("lname", [("ivanov"), ("сидоров")])
+@pytest.mark.parametrize("midname", [("ivanovich"), ("ИВАНОВИЧ")])
+@pytest.mark.parametrize("dbirth", [("10.10.1991"), ("10102020")])
+@pytest.mark.parametrize("login", [("Serg"), ("10102020serg")])
+@pytest.mark.parametrize("phone", [("89149214590"), ("79659315762")])
+def test_negaive_settings_change_info(browser, name, lname, midname, dbirth, login, phone):
+    labirint_change_all_settings = AddBookHelper(browser)
+    labirint_change_all_settings.go_to_site()
+    labirint_change_all_settings.click_on_the_button_my_cab()
+    labirint_change_all_settings.click_on_the_button_settings()
+    labirint_change_all_settings.enter_name_setting(name)
+    labirint_change_all_settings.enter_surname_setting(lname)
+    labirint_change_all_settings.enter_patronymic_setting(midname)
+    labirint_change_all_settings.enter_date_of_birth_setting(dbirth)
+    labirint_change_all_settings.enter_login_setting(phone)
+    labirint_change_all_settings.enter_login_setting(login)
+    labirint_change_all_settings.click_on_the_button_save_settings()
+    elements = labirint_change_all_settings.check_navigation_settings()
+    assert elements
+
